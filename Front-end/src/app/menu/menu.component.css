@@ -1,0 +1,108 @@
+/* Section Menus */
+.menu-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+  text-align: center;
+}
+
+.menu-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  display: inline-block;
+}
+
+.menu-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #4caf50; /* Couleur principale */
+  border-radius: 10px;
+}
+
+.menu-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
+}
+
+.menu-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.menu-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.menu-card:hover img {
+  transform: scale(1.05);
+}
+
+.menu-card h3 {
+  font-size: 1.5rem;
+  color: #4caf50;
+  margin: 1rem 0 0.5rem;
+  font-weight: bold;
+}
+
+.menu-card p {
+  font-size: 1rem;
+  color: #666;
+  padding: 0 1.5rem 1.5rem;
+  line-height: 1.6;
+}
+
+/* Style du bouton "Réserver" */
+.reserve-btn {
+  background-color: #4caf50; /* Couleur principale */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 1rem 0;
+}
+
+.reserve-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-5px);
+}
+
+.reserve-btn:active {
+  transform: translateY(0);
+}
+
+/* Media query pour les écrans plus petits */
+@media (max-width: 768px) {
+  .menu-card {
+    margin: 0 auto;
+  }
+
+  .menu-section h2 {
+    font-size: 2.2rem;
+  }
+}

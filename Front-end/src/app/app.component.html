@@ -1,0 +1,49 @@
+<div class="home-container">
+  <header>
+    <nav class="navbar">
+      <img src="../assets/logo.png" alt="logo" class="logo" />
+      <div class="navbar-brand">Cantine El Ons</div>
+      <div class="navbar-links">
+        <a routerLink="/" class="nav-link home-link">
+          <i class="fa fa-home"></i> Accueil
+        </a>
+
+        <!-- Common links -->
+        <a routerLink="/menu" class="nav-link">
+          <i class="fa fa-utensils"></i> Nos Menus
+        </a>
+
+        <!-- Admin only links -->
+        <ng-container *ngIf="isAdmin$ | async">
+          <a routerLink="/add-menu" class="nav-link">
+            <i class="fa fa-plus"></i> Ajouter Plat
+          </a>
+          <a routerLink="/manage-menus" class="nav-link">
+            <i class="fa fa-cog"></i> Gérer Menus
+          </a>
+        </ng-container>
+
+        <!-- Student only links -->
+        <ng-container *ngIf="(isLoggedIn$ | async) && !(isAdmin$ | async)">
+          <a routerLink="listeReservation" class="nav-link">
+            <i class="fa fa-list-alt"></i> Mes Réservations
+          </a>
+        </ng-container>
+
+        <!-- Auth links -->
+        <ng-container *ngIf="!(isLoggedIn$ | async)">
+          <a routerLink="/login" class="nav-link">
+            <i class="fa fa-sign-in-alt"></i> Connexion
+          </a>
+        </ng-container>
+        <ng-container *ngIf="isLoggedIn$ | async">
+          <a (click)="logout()" class="nav-link">
+            <i class="fa fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </ng-container>
+      </div>
+    </nav>
+  </header>
+
+  <router-outlet></router-outlet>
+</div>

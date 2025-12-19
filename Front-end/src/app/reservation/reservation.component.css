@@ -1,0 +1,251 @@
+/* Section Réservation */
+.reservation-section {
+  padding: 4rem 2rem;
+  background: linear-gradient(
+      135deg,
+      rgba(243, 244, 246, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url("https://source.unsplash.com/random/1920x1080?food,restaurant");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  border-radius: 15px;
+  overflow: hidden;
+  box-sizing: border-box; /* Ajouté pour contrôler le box model */
+}
+
+/* Style du titre */
+.reservation-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  display: inline-block;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ); /* Pour rendre le texte plus lisible */
+  padding: 0 20px;
+  border-radius: 10px;
+  box-sizing: border-box; /* Ajouté */
+}
+
+.reservation-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 4px;
+  background-color: #4caf50;
+  border-radius: 10px;
+}
+
+/* Style de la forme de réservation */
+.reservation-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9); /* Transparence douce */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-out;
+  box-sizing: border-box; /* Ajouté */
+}
+
+/* Style des labels */
+.form-label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+/* Style des labels lors du focus du champ de saisie */
+.reservation-form input:focus + .form-label,
+.reservation-form textarea:focus + .form-label {
+  color: #4caf50;
+}
+
+/* Style général pour les labels dans le formulaire */
+.reservation-form label {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+/* Ajout d'une petite animation sur le label pour améliorer l'interaction */
+.reservation-form input:focus + label,
+.reservation-form textarea:focus + label {
+  color: #4caf50;
+  font-weight: bold;
+  transform: translateY(-5px);
+  font-size: 1.1rem;
+}
+
+/* Style des champs de saisie */
+.reservation-form input,
+.reservation-form textarea,
+.reservation-form select {
+  width: 100%;
+  padding: 1.2rem;
+  margin: 0.8rem 0;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+  box-sizing: border-box; /* Ajouté */
+}
+
+.reservation-form input:focus,
+.reservation-form textarea:focus,
+.reservation-form select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+  outline: none;
+}
+
+/* Style de l'input prix avec icône */
+.price-input {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 0.8rem;
+  margin: 0.8rem 0;
+  background-color: #f9f9f9;
+}
+
+.currency-icon {
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+  color: #4caf50;
+}
+
+.price-input input {
+  border: none;
+  flex-grow: 1;
+  font-size: 1rem;
+  background-color: transparent;
+}
+
+.price-input input:focus {
+  border: none;
+  outline: none;
+}
+#paymentMethod {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+#paymentMethod label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+#paymentMethod img {
+  margin-right: 10px;
+}
+
+/* Masquer la section RIB par défaut */
+#ribSection {
+  display: none;
+}
+.message {
+  padding: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.success {
+  background-color: #6cc36f;
+  color: white;
+}
+
+.error {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour le focus des champs */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px 5px rgba(76, 175, 80, 0);
+  }
+}
+
+input:focus,
+select:focus {
+  animation: pulse 0.5s ease-out;
+}
+
+/* Style du bouton de soumission */
+.submit-button {
+  width: 100%;
+  padding: 1.2rem;
+  background-color: #4caf50;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Styles de réactivité */
+@media (max-width: 768px) {
+  .reservation-section h2 {
+    font-size: 2.2rem;
+  }
+
+  .reservation-form {
+    padding: 1.5rem;
+  }
+
+  .reservation-form input,
+  .reservation-form select {
+    padding: 1rem;
+  }
+
+  .submit-button {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

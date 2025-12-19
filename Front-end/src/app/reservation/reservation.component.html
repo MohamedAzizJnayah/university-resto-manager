@@ -1,0 +1,95 @@
+<section id="reservation" class="reservation-section">
+  <h2>Réservez votre repas</h2>
+
+  <form class="reservation-form" (ngSubmit)="submitReservation($event)">
+    <!-- Données de l'étudiant pré-remplies -->
+    <input type="text" id="studentName" placeholder="Nom" readonly hidden />
+    <input type="email" id="studentCIN" placeholder="CIN" readonly hidden />
+
+    <!-- Données du plat pré-remplies -->
+    <input
+      type="text"
+      id="platName"
+      placeholder="Nom du plat"
+      readonly
+      hidden
+    />
+
+    <!-- Remarque -->
+    <label for="remark">Ajouter une remarque</label>
+    <textarea id="remark" placeholder="Ajouter une remarque"></textarea>
+
+    <!-- Date -->
+    <label for="reservationDate">Date</label>
+    <input type="date" id="reservationDate" required />
+
+    <!-- Prix Total avec icône TND -->
+    <label for="totalPrice">Prix total</label>
+    <div class="price-input">
+      <span class="currency-icon">TND</span>
+      <input type="number" id="totalPrice" placeholder="Prix total" readonly />
+    </div>
+
+    <!-- Méthode de paiement -->
+    <label for="paymentMethod">Méthode de paiement</label>
+    <div id="paymentMethod">
+      <label>
+        <input
+          type="radio"
+          id="paypalRadio"
+          name="paymentMethod"
+          value="paypal"
+        />
+        <!-- PayPal Logo -->
+        <table border="0" cellpadding="10" cellspacing="0" align="center">
+          <tr>
+            <td align="center"></td>
+          </tr>
+          <tr>
+            <td align="center">
+              <a
+                href="/digital-wallet/ways-to-pay/add-payment-method"
+                title="How PayPal Works"
+                onclick="javascript:window.open('/digital-wallet/ways-to-pay/add-payment-method','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"
+                ><img
+                  src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_payments_by_pp_2line.png"
+                  border="0"
+                  alt="Payments by PayPal"
+              /></a>
+            </td>
+          </tr>
+        </table>
+        <!-- PayPal Logo -->
+        PayPal
+      </label>
+      <label>
+        <input
+          type="radio"
+          id="ribRadio"
+          name="paymentMethod"
+          value="rib"
+          required
+        />
+        <img
+          src="https://play-lh.googleusercontent.com/lOgvUGpz6YUSXJG48kbzGrTEohIC8FDr_WkP6rwgaELR0g5o6OQu5-VPGexKoB8F0C-_"
+          alt="RIB"
+          width="30"
+          height="30"
+        />
+        D17 Poste
+      </label>
+    </div>
+
+    <!-- Code RIB (visible uniquement si virement bancaire sélectionné) -->
+    <div id="ribSection" style="display: none">
+      <label for="ribCode">Code RIB</label>
+      <input type="text" id="ribCode" placeholder="Entrez votre code RIB" />
+    </div>
+
+    <button type="submit" class="submit-button">Confirmer</button>
+  </form>
+
+  <div *ngIf="message" class="message" [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<div class="menu-section">
+  <h2>Nos Plats</h2>
+  <div class="menu-cards">
+    <div *ngFor="let plat of plats" class="menu-card">
+      <img [src]="plat.image" alt="Plat" />
+      <h3>{{ plat.name }}</h3>
+      <p>{{ plat.description }}</p>
+      <button class="reserve-btn" (click)="reserverPlat(plat.id)">
+        Réserver
+      </button>
+
+      <div *ngIf="isAdmin">
+        <button (click)="deletePlat(plat.id)">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="form-container">
+  <h2>Ajouter un nouveau plat</h2>
+
+  <form (submit)="addPlat()">
+    <label for="name">Nom du plat :</label>
+    <input
+      id="name"
+      type="text"
+      placeholder="Nom du plat"
+      [(ngModel)]="platRequest.name"
+      name="name"
+      required
+      maxlength="100"
+    />
+
+    <label for="description">Description du plat :</label>
+    <textarea
+      id="description"
+      placeholder="Description du plat"
+      [(ngModel)]="platRequest.description"
+      name="description"
+      required
+      maxlength="500"
+    ></textarea>
+
+    <label for="prix">Prix du plat :</label>
+    <input
+      id="prix"
+      type="number"
+      placeholder="Prix du plat"
+      [(ngModel)]="platRequest.prix"
+      name="prix"
+      required
+      step="0.01"
+    />
+
+    <label for="menuId">Choisir un menu :</label>
+    <select id="menuId" [(ngModel)]="platRequest.menuId" name="menuId" required>
+      <option value="">-- Sélectionner un menu --</option>
+      <option *ngFor="let menu of menus" [value]="menu.id">
+        {{ menu.name }}
+      </option>
+    </select>
+
+    <label for="image">Image du plat :</label>
+    <input
+      id="image"
+      type="file"
+      (change)="onImageSelected($event)"
+      accept="image/*"
+      required
+    />
+
+    <div *ngIf="imagePreview" class="image-preview">
+      <img [src]="imagePreview" alt="Aperçu de l'image" />
+    </div>
+
+    <button type="submit" class="submit-btn">Ajouter le plat</button>
+  </form>
+</div>

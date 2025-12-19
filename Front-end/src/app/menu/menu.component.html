@@ -1,0 +1,14 @@
+<section id="menu" class="menu-section">
+  <h2>Nos Menus</h2>
+  <div class="menu-cards">
+    <div class="menu-card" *ngFor="let menu of menus">
+      <!-- Affichage de l'image -->
+      <img [src]="menu.image" [alt]="menu.nom" width="80px" height="50px" />
+      <h3>{{ menu.name }}</h3>
+      <p>{{ menu.description }}</p>
+      <button class="reserve-btn" (click)="consulterMenu(menu.id)">
+        Consulter
+      </button>
+    </div>
+  </div>
+</section>

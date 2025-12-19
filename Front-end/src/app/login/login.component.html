@@ -1,0 +1,80 @@
+<div class="login-container">
+  <div *ngIf="!isLoggedIn" class="auth-form">
+    <h2>{{ isLogin ? 'Login' : 'Register' }}</h2>
+    
+    <form (ngSubmit)="onSubmit()">
+      <!-- Role Selection for Login -->
+      <div class="form-group" *ngIf="isLogin">
+        <label for="role">Role:</label>
+        <select id="role" [(ngModel)]="user.role" name="role" class="form-control">
+          <option value="">Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="etudiant">Student</option>
+        </select>
+      </div>
+
+      <!-- Admin Login Fields -->
+      <div *ngIf="isLogin && user.role === 'admin'">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="user.email" name="email" class="form-control">
+        </div>
+      </div>
+
+      <!-- Student Login/Register Fields -->
+      <div *ngIf="(!isLogin) || (isLogin && user.role === 'etudiant')">
+        <div class="form-group">
+          <label for="cin">CIN:</label>
+          <input type="text" id="cin" [(ngModel)]="user.cin" name="cin" class="form-control">
+        </div>
+      </div>
+
+      <!-- Registration-only Fields -->
+      <div *ngIf="!isLogin">
+        <div class="form-group">
+          <label for="firstname">First Name:</label>
+          <input type="text" id="firstname" [(ngModel)]="user.firstname" name="firstname" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last Name:</label>
+          <input type="text" id="lastname" [(ngModel)]="user.lastname" name="lastname" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="user.email" name="email" class="form-control">
+        </div>
+      </div>
+
+      <!-- Common Password Field -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="user.motpasse" name="motpasse" class="form-control">
+      </div>
+
+      <!-- Messages -->
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">
+        {{ isLogin ? 'Login' : 'Register' }}
+      </button>
+
+      <!-- Toggle Form Button -->
+      <button type="button" class="btn btn-link" (click)="toggleForm()">
+        {{ isLogin ? 'Need to register?' : 'Already have an account?' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Logged In View -->
+  <div *ngIf="isLoggedIn" class="logged-in-container">
+    <h3>Welcome, {{ user.firstname }}!</h3>
+    <p>You are logged in as: {{ user.role === 'admin' ? 'Administrator' : 'Student' }}</p>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+</div>

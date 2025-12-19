@@ -1,0 +1,89 @@
+<div class="manage-menus-container">
+  <h1>Gérer les Menus</h1>
+
+  <!-- Message -->
+  <div
+    *ngIf="message"
+    class="alert"
+    [ngClass]="{
+      'alert-success': message.includes('succès'),
+      'alert-error': message.includes('Erreur')
+    }"
+  >
+    {{ message }}
+  </div>
+
+  <!-- Formulaire -->
+  <form
+    [formGroup]="menuForm"
+    (ngSubmit)="isEditMode ? updateMenu() : addMenu()"
+  >
+    <div>
+      <label for="nom">Nom du Menu:</label>
+      <input id="nom" type="text" formControlName="nom" required />
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div>
+      <label for="image">Image du Menu:</label>
+      <input type="file" id="image" (change)="onImageSelected($event)" />
+      <div *ngIf="imagePreview" class="image-preview">
+        <img [src]="imagePreview" alt="Image du Menu" />
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="menuForm.invalid">
+      {{ isEditMode ? "Modifier Menu" : "Ajouter Menu" }}
+    </button>
+
+    <button *ngIf="isEditMode" type="button" (click)="cancelEdit()">
+      Annuler
+    </button>
+  </form>
+
+  <!-- Tableau -->
+  <table *ngIf="menus.length > 0">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let menu of menus; let i = index">
+        <td>{{ menu.name }}</td>
+        <td>{{ menu.description }}</td>
+        <td>
+          <img
+            *ngIf="menu.imageUrl"
+            [src]="menu.imageUrl"
+            alt="Image du Menu"
+            class="menu-image"
+          />
+        </td>
+        <td>
+          <div class="action-buttons">
+            <button class="edit-button" (click)="editMenu(menu, i)">
+              Modifier
+            </button>
+            <button class="delete-button" (click)="deleteMenu(menu.id)">
+              Supprimer
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="menus.length === 0">Aucun menu disponible.</div>
+</div>
